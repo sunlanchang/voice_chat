@@ -1,2 +1,2 @@
-# websockets-playlist
-All the course files for the WebSockets playlist on The Net Ninja YouTube channel.
+# 语音聊天
+JavaScript实现语音聊天
