@@ -1,5 +1,5 @@
 
-//服务器端，文本socket通信
+//服务器端，负责转发数据
 var express = require('express');
 var socket = require('socket.io');
 
@@ -20,7 +20,8 @@ io.on('connection', (socket) => {
 
     // Handle chat event
     socket.on('chat', function (data) {
-        // console.log(data);
+        console.log(data)
+        //广播信息
         io.sockets.emit('chat', data);
     });
 
