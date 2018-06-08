@@ -9,7 +9,6 @@
 // This code is adapted from
 // https://rawgit.com/Miguelao/demos/master/mediarecorder.html
 
-//录音js
 'use strict';
 
 /* globals MediaRecorder */
@@ -27,7 +26,7 @@ var recordButton = document.querySelector('button#record');
 var playButton = document.querySelector('button#play');
 var downloadButton = document.querySelector('button#download');
 recordButton.onclick = toggleRecording;
-// playButton.onclick = play;
+playButton.onclick = play;
 downloadButton.onclick = download;
 
 // window.isSecureContext could be used for Chrome
@@ -136,16 +135,7 @@ function play() {
     // workaround for non-seekable video taken from
     // https://bugs.chromium.org/p/chromium/issues/detail?id=642012#c23
     recordedAudio.addEventListener('loadedmetadata', function () {
-        if (recordedAudio.duration === Infinity) {
-            recordedAudio.currentTime = 1e101;
-            recordedAudio.ontimeupdate = function () {
-                recordedAudio.currentTime = 0;
-                recordedAudio.ontimeupdate = function () {
-                    delete recordedAudio.ontimeupdate;
-                    recordedAudio.play();
-                };
-            };
-        }
+        var playPromise = recordedAudio.play();
     });
 }
 
