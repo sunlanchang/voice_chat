@@ -4,14 +4,14 @@ var socket = io.connect('http://localhost:4000');
 // Query DOM
 var message = document.getElementById('message'),
     handle = document.getElementById('handle'),
-    send_btn = document.getElementById('send'),
+    send = document.getElementById('send'),
     output = document.getElementById('output'),
     feedback = document.getElementById('feedback');
-//     play = document.getElementById('plsy');
+var play = document.getElementById('play');
 
 
 // Emit events
-send_btn.addEventListener('click', function () {
+send.addEventListener('click', function () {
     if (!recordedBlobs == true) {
         //如果没有语音消息
         ;
@@ -25,7 +25,7 @@ send_btn.addEventListener('click', function () {
     });
     // console.log('blob', recordedBlobs);
     message.value = '';
-    recordedBlobs = '';
+    // recordedBlobs = '';
 });
 
 //键盘按下触发typeing事件
@@ -38,6 +38,10 @@ socket.on('chat', function (data) {
     feedback.innerHTML = '';
     output.innerHTML += '<p><strong>' + data.handle + ': </strong>' + data.message + '</p>';
     console.log(data.recordedBlobs);
+
+    window.recordedBlobs = data.recordedBlobs;
+    recordedAudio.controls = true;
+    // playButton.disabled = false;
 });
 
 socket.on('typing', function (data) {
