@@ -2,15 +2,23 @@
 //服务器端，负责转发数据
 var express = require('express');
 var socket = require('socket.io');
+var fs = require('fs');
+var https = require('https');
 
 // App setup
 var app = express();
-var server = app.listen(4000, function () {
-    console.log('listening for requests on port 4000,');
-});
+
+app.use(express.static('public'));
+var server = https.createServer({
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem')
+}, app).listen(4000);
+
+// var server = app.listen(4000, function () {
+//     console.log('listening for requests on port 4000,');
+// });
 
 // Static files
-app.use(express.static('public'));
 
 // Socket setup & pass server
 var io = socket(server);
