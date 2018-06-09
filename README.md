@@ -21,6 +21,14 @@
 
 ![流程图](images/流程图.svg)
 
+## 文本通信
+
+**详情见`public/js/chat.js`注释**
+
+## 语音通信
+
+**详情见`public/js/record.js`注释**
+
 ## 创建https证书
 
 在localhost中使用webRTC不需要使用https，但是在局域网或者外网使用webRTC，必须强制使用webRTC，这里采用自己生成证书供测试使用，具体生成方法和设置https方法[参考博客](http://blog.mgechev.com/2014/02/19/create-https-tls-ssl-application-with-express-nodejs/)：
