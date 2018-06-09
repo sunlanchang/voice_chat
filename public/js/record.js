@@ -1,14 +1,3 @@
-/*
-*  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
-*
-*  Use of this source code is governed by a BSD-style license
-*  that can be found in the LICENSE file in the root of the source
-*  tree.
-*/
-
-// This code is adapted from
-// https://rawgit.com/Miguelao/demos/master/mediarecorder.html
-
 'use strict';
 
 /* globals MediaRecorder */
@@ -29,7 +18,7 @@ recordButton.onclick = toggleRecording;
 playButton.onclick = play;
 downloadButton.onclick = download;
 
-// window.isSecureContext could be used for Chrome
+// 使用https协议
 var isSecureOrigin = location.protocol === 'https:' ||
     location.hostname === 'localhost';
 if (!isSecureOrigin) {
@@ -37,7 +26,7 @@ if (!isSecureOrigin) {
         '\n\nChanging protocol to HTTPS');
     location.protocol = 'HTTPS';
 }
-
+//获取语音，不获取视频参数
 var constraints = {
     audio: true,
     video: false
@@ -53,7 +42,7 @@ function handleSuccess(stream) {
 function handleError(error) {
     console.log('navigator.getUserMedia error: ', error);
 }
-
+//获得用户音频权限
 navigator.mediaDevices.getUserMedia(constraints).
     then(handleSuccess).catch(handleError);
 
@@ -78,7 +67,7 @@ function handleDataAvailable(event) {
 function handleStop(event) {
     console.log('Recorder stopped: ', event);
 }
-
+// 开始录取与停止录取
 function toggleRecording() {
     if (recordButton.textContent === 'Start Recording') {
         startRecording();
@@ -132,8 +121,6 @@ function stopRecording() {
 function play() {
     var superBuffer = new Blob(recordedBlobs, { type: 'audio/mp3' });
     recordedAudio.src = window.URL.createObjectURL(superBuffer);
-    // workaround for non-seekable video taken from
-    // https://bugs.chromium.org/p/chromium/issues/detail?id=642012#c23
     recordedAudio.addEventListener('loadedmetadata', function () {
         var playPromise = recordedAudio.play();
     });

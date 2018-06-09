@@ -10,7 +10,7 @@ var message = document.getElementById('message'),
 var play = document.getElementById('play');
 
 
-// Emit events
+// 点击时触发
 send.addEventListener('click', function () {
     if (!recordedBlobs == true) {
         //如果没有语音消息
@@ -44,6 +44,7 @@ socket.on('chat', function (data) {
     // playButton.disabled = false;
 });
 
+//接收到服务器发送的其他人正在输入的消息
 socket.on('typing', function (data) {
     feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
 });

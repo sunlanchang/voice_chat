@@ -2,7 +2,7 @@
 
 ## 描述
 
-程序在 [iamshaunjp](https://github.com/iamshaunjp/websockets-playlist/tree/lesson-5) 的基础上利用webRTC技术，添加了语音聊天功能。demo：<https://biptedu.cn:4000/>
+程序在 [iamshaunjp](https://github.com/iamshaunjp/websockets-playlist/tree/lesson-5) 的群聊功能基础上利用webRTC技术，添加了语音群聊功能，在其他人键盘输入时，会出现类似微信的对方正在输入字样。demo：<https://biptedu.cn:4000/>
 
 **使用的nodejs模块**
 
