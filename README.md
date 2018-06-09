@@ -1,2 +1,37 @@
-# 语音聊天
-JavaScript实现语音聊天
+# JavaScript实现语音聊天
+
+## 描述
+
+程序在 [iamshaunjp](https://github.com/iamshaunjp/websockets-playlist/tree/lesson-5) 的基础上利用webRTC技术，添加了语音聊天功能。demo：<https://biptedu.cn:4000/>
+
+**使用的node模块和程序功能**
+
+- `express`：创建一个web服务器
+- `https`：创建https连接（局域网或者外网webRTC需要https连接，具体见[tutoril](https://www.html5rocks.com/en/tutorials/webrtc/basics/)）
+- `socket.io`：客户端与服务端实时通信
+
+## 创建https证书
+
+在localhost中使用webRTC不需要使用https，但是在局域网或者外网使用webRTC，必须强制使用webRTC，这里采用自己生成证书供测试使用，具体生成方法和设置https方法[参考博客](http://blog.mgechev.com/2014/02/19/create-https-tls-ssl-application-with-express-nodejs/)：
+
+- 生成自己签名的证书（有效期365天）
+```
+ openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365
+```
+- 使用https连接的express，例子如下：
+```javascript
+  var fs = require('fs'),
+    https = require('https'),
+    express = require('express'),
+    app = express();
+
+    https.createServer({
+      key: fs.readFileSync('key.pem'),
+      cert: fs.readFileSync('cert.pem')
+    }, app).listen(55555);
+
+    app.get('/', function (req, res) {
+      res.header('Content-type', 'text/html');
+      return res.end('<h1>Hello, Secure World!</h1>');
+    });
+```
