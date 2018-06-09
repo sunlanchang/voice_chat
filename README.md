@@ -10,6 +10,12 @@
 - `https`：创建https连接（局域网或者外网webRTC需要https连接，具体见[tutoril](https://www.html5rocks.com/en/tutorials/webrtc/basics/)）
 - `socket.io`：客户端与服务端实时通信
 
+## 结构图和流程图
+
+![架构图](images/架构.svg)
+
+![流程图](images/流程图.svg)
+
 ## 创建https证书
 
 在localhost中使用webRTC不需要使用https，但是在局域网或者外网使用webRTC，必须强制使用webRTC，这里采用自己生成证书供测试使用，具体生成方法和设置https方法[参考博客](http://blog.mgechev.com/2014/02/19/create-https-tls-ssl-application-with-express-nodejs/)：
