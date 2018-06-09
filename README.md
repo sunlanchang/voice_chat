@@ -4,11 +4,16 @@
 
 程序在 [iamshaunjp](https://github.com/iamshaunjp/websockets-playlist/tree/lesson-5) 的基础上利用webRTC技术，添加了语音聊天功能。demo：<https://biptedu.cn:4000/>
 
-**使用的node模块和程序功能**
+**使用的nodejs模块**
 
 - `express`：创建一个web服务器
 - `https`：创建https连接（局域网或者外网webRTC需要https连接，具体见[tutoril](https://www.html5rocks.com/en/tutorials/webrtc/basics/)）
 - `socket.io`：客户端与服务端实时通信
+
+**js文件**
+
+- `chat.js`：实现按钮事件的注册、文本数据的发送等
+- `record.js`：实现语音消息的录取、播放、发送等
 
 ## 结构图和流程图
 
