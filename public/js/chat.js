@@ -28,7 +28,7 @@ send.addEventListener('click', function () {
     // recordedBlobs = '';
 });
 
-//键盘按下触发typeing事件
+//键盘按下触发typing事件
 message.addEventListener('keypress', function () {
     socket.emit('typing', handle.value);
 })
